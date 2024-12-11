@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ASP.NET.Context;
+using ASP.NET.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,15 @@ namespace ASP.NET.Controllers
 
     public class HomeController : Controller
     {
+        ASPNETEntities objASPNETEntities = new ASPNETEntities();
         public ActionResult Index()
-        {
-            return View();
+        { 
+           HomeModel objHomeModel=new HomeModel();
+
+            objHomeModel.ListCategory = objASPNETEntities.Categories.ToList();
+
+            objHomeModel.ListProducts = objASPNETEntities.Products.ToList();
+            return View(objHomeModel);
         }
 
         public ActionResult About()
