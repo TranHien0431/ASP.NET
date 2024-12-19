@@ -1,36 +1,19 @@
-﻿<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+﻿@model ASP.NET.Context.User
 
-    <title>Website title - bootstrap html template</title>
+@{
+    ViewBag.Title = "Register";
+}
 
-    <link href="~/Content/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<h2>Register</h2>
 
-    <!-- jQuery -->
-    <script src="~/Scripts/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    <!-- Bootstrap4 files-->
-    <script src="~/Scripts/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
-
-    <!-- Font awesome 5 -->
-    <link href="~/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
-    <!-- custom style -->
-    <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
-
-    <!-- custom javascript -->
-    <script src="~/Scripts/js/script.js" type="text/javascript"></script>
-
-</head>
-<body>
+   
 
 
-    
+
     <!-- ========================= SECTION CONTENT ========================= -->
     <section class="section-content padding-y">
 
@@ -108,9 +91,61 @@
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
     <!-- ========================= FOOTER ========================= -->
-   
     <!-- ========================= FOOTER END // ========================= -->
 
 
-</body>
-</html>
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

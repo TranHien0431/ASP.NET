@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d085d84affa4ed9a385298160363789" Name="Diagram1">
-        <EntityTypeShape EntityType="ASPNETModel.Brand" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ASPNETModel.Category" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ASPNETModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ASPNETModel.User" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="ASPNETModel.FK_Products_Brands" ManuallyRouted="false" />
-        <AssociationConnector Association="ASPNETModel.FK_Products_Categories" ManuallyRouted="false" />
+      <Diagram DiagramId="a7bb00d114de48209bf68342b8671ca8" Name="Diagram1">
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.Brand" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.Category" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.Order" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.User" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="WebsiteASP_NETModel.FK__Product__BrandId__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteASP_NETModel.FK__Product__Categor__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteASP_NETModel.FK__Order__ProductId__5165187F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

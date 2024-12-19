@@ -18,8 +18,9 @@ namespace ASP.NET.Areas.Admin
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new[] { "ASP.NET.Areas.Admin.Controllers" }
+                  namespaces: new[] { "ASP.NET.Areas.Admin.Controllers" }
             );
         }
+
     }
 }

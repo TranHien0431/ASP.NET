@@ -17,7 +17,7 @@ namespace ASP.NET
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new[] { "ASP.NET.Controllers" }
+                   namespaces: new[] { "ASP.NET.Controllers" }
             );
         }
     }

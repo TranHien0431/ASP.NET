@@ -8,7 +8,7 @@ namespace ASP.NET.Models
 {
     public class HomeModel
     {
-        public List<Product> ListProducts { get; set; }
+        public List<Product> ListProduct { get; set; }
         public List<Category> ListCategory { get; set; }
     }
 }

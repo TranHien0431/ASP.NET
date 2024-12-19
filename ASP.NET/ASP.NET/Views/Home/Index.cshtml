@@ -1,40 +1,5 @@
 ﻿@model ASP.NET.Models.HomeModel
 
-  
-
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="max-age=604800" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Website title - bootstrap html template</title>
-
-    <link href="~/Content/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-
-    <!-- jQuery -->
-    <script src="~/Scripts/js/jquery-2.0.0.min.js" type="text/javascript"></script>
-
-    <!-- Bootstrap4 files-->
-    <script src="~/Scripts/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
-
-    <!-- Font awesome 5 -->
-    <link href="~/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
-    <!-- custom style -->
-    <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
-
-    <!-- custom javascript -->
-    <script src="~/Scripts/js/script.js" type="text/javascript"></script>
-</head>
-<body>
-
-
-
-
     <div class="container">
         <!-- ========================= SECTION MAIN  ========================= -->
         <section class="section-main padding-y">
@@ -46,10 +11,13 @@
                             <h6>Danh mục</h6>
                             <nav class="nav-home-aside">
                                 <ul class="menu-category">
-                                    @foreach (var item in Model.ListCategory)
+                                    @foreach (var category in Model.ListCategory)
                                     {
-                                        <li><a href="#">@item.CategoryName</a></li>
+                                        <li>
+                                    <a href="@Url.Action("ProductCategory", "Category", new { id = category.Id })">@category.Name</a>
+                                        </li>
                                     }
+                                   
                                 </ul>
                             </nav>
                         </aside> <!-- col.// -->
@@ -87,22 +55,17 @@
                         </div> <!-- col.// -->
                         <div class="col-md d-none d-lg-block flex-grow-1">
                             <aside class="special-home-right">
-                                <h6 class="bg-blue text-center text-white mb-0 p-2">Danh Mục Phổ Biến</h6>
-                                @foreach (var item in Model.ListCategory.Take(3))
+                                <h6 class="bg-blue text-center text-white mb-0 p-2">Danh mục phổ biến</h6>
+                                @foreach (var category in Model.ListCategory.Where(n=>n.ShowOnHomePage == true).Take(3))
                                 {
                                     <div class="card-banner border-bottom">
                                         <div class="py-3" style="width:80%">
-                                            <h6 class="card-title">@item.CategoryName</h6>
+                                            <h6 class="card-title">@category.Name</h6>
                                             <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
                                         </div>
                                         <img src="~/Content/images/items/1.jpg" height="80" class="img-bg">
                                     </div>
-
                                 }
-
-
-
-
                             </aside>
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
@@ -128,23 +91,22 @@
                     </div>
                 </div> <!-- col.// -->
                 <div class="row no-gutters items-wrap">
-                    @foreach (var item in Model.ListProducts)
+                    @foreach (var product in Model.ListProduct.Where(n=>n.TypeId == 2).Take(3))
                     {
                         <div class="col-md col-6">
                             <figure class="card-product-grid card-sm">
-                                <a href="#" class="img-wrap">
-                                    <img src="~/Content/images/items/@item.ProductImage">
+                                <a href="@Url.Action("ProductDetail","Product", new { Id= product.Id})" class="img-wrap">
+                                   <img src="~/Content/images/items/@product.Avatar" alt="@product.Name">
                                 </a>
                                 <div class="text-wrap p-3">
-                                    <a href="#" class="title">@item.ProductName</a>
+                                   <!--<a href="#" class="title">product.Name</a>-->
+                                    @Html.ActionLink(product.Name, "ProductDetail", "Product", new { Id = product.Id },null)
                                     <span class="badge badge-danger"> -20% </span>
                                 </div>
                             </figure>
-                        </div>
+                        </div> <!-- col.// -->
                     }
-                    <!-- col.// -->
-
-                </div>
+                    </div>
             </div>
 
         </section>
@@ -152,7 +114,7 @@
         <!-- =============== SECTION 1 =============== -->
         <section class="padding-bottom">
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Áo Thun Nam</h4>
+                <h4 class="title-section text-uppercase">Apple</h4>
             </header>
 
             <div class="card card-home-category">
@@ -169,20 +131,18 @@
                     </div> <!-- col.// -->
                     <div class="col-md-9">
                         <ul class="row no-gutters bordered-cols">
-                                @foreach( var item in Model.ListProducts)
-                        {
-                            <li class="col-6 col-lg-3 col-md-4">
-                                <a href="#" class="item">
-                                    <div class="card-body">
-                                        <h6 class="title">Well made women clothes with trending collection  </h6>
-                                        <img class="img-sm float-right" src="~/Content/images/items/@item.ProductImage">
-                                        <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @item.ProductName</p>
-                                    </div>
-                                </a>
-                            </li>
-                        }
-                            
-                            
+                            @foreach (var product in Model.ListProduct.Where(n=>n.BrandId==1))
+                            {
+                                <li class="col-6 col-lg-3 col-md-4">
+                                    <a href="#" class="item">
+                                        <div class="card-body">
+                                            <h6 class="title">Well made women clothes with trending collection  </h6>
+                                            <img class="img-sm float-right" src="~/Content/images/items/@product.Avatar" alt="@product.Name">
+                                            <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @product.Name</p>
+                                        </div>
+                                    </a>
+                                </li>
+                             }
                         </ul>
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
@@ -192,7 +152,7 @@
         <!-- =============== SECTION 2 =============== -->
         <section class="padding-bottom">
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Áo Khoác</h4>
+                <h4 class="title-section text-uppercase">Samsung</h4>
             </header>
 
             <div class="card card-home-category">
@@ -209,21 +169,18 @@
                     </div> <!-- col.// -->
                     <div class="col-md-9">
                         <ul class="row no-gutters bordered-cols">
-
-                            @foreach (var item in Model.ListProducts)
+                            @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 2))
                             {
                                 <li class="col-6 col-lg-3 col-md-4">
                                     <a href="#" class="item">
                                         <div class="card-body">
-                                            <h6 class="title">Well made electronic  stuff collection  </h6>
-                                            <img class="img-sm float-right" src="~/Content/images/items/@item.ProductImage">
-                                            <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @item.ProductName</p>
+                                            <h6 class="title">Well made women clothes with trending collection  </h6>
+                                            <img class="img-sm float-right" src="~/Content/images/items/@product.Avatar" alt="@product.Name">
+                                            <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @product.Name</p>
                                         </div>
                                     </a>
                                 </li>
                             }
-
-
                         </ul>
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
@@ -297,12 +254,27 @@
         <section class="padding-bottom-sm">
 
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Recommended items</h4>
+                <h4 class="title-section text-uppercase">Sản phẩm đề xuất</h4>
             </header>
 
             <div class="row row-sm">
-
-            </div> <!-- row.// --> <!-- row.// -->
+                @foreach (var product in Model.ListProduct.Where(n=>n.TypeId==2).Take(6))
+                {
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <div class="card card-sm card-product-grid">
+                            <a href="@Url.Action("ProductDetail", "Product", new { id = product.Id })" class="img-wrap">
+                                <img src="~/Content/images/items/@product.Avatar" alt="@product.Name">
+                            </a>
+                            <figcaption class="info-wrap">
+                                <a href="@Url.Action("ProductDetail", "Product", new { id = product.Id })" class="title">@product.Name</a>
+                                <div class="price mt-1">
+                                    @product.Price
+                                </div> <!-- price-wrap.// -->
+                            </figcaption>
+                        </div>
+                    </div> <!-- col.// -->
+                }
+            </div> <!-- row.// -->
         </section>
         <!-- =============== SECTION ITEMS .//END =============== -->
         <!-- =============== SECTION SERVICES =============== -->
@@ -398,7 +370,7 @@
                     <small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
                 </div> <!-- col-md-6.// -->
             </div>
-
+            h
 
         </div>
     </section>
