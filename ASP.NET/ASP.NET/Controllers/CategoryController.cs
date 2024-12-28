@@ -10,7 +10,7 @@ namespace ASP.NET.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        WebsiteASP_NETEntities1 objWebsiteASP_NETEntities1 = new WebsiteASP_NETEntities1();
+        WebsiteASP_NETEntities2 objWebsiteASP_NETEntities2 = new WebsiteASP_NETEntities2();
         public ActionResult Index()
         {
            
@@ -18,14 +18,14 @@ namespace ASP.NET.Controllers
         }
         public ActionResult AllCategory()
 
-        {  var lstCategory = objWebsiteASP_NETEntities1.Categories.ToList();
+        {  var lstCategory = objWebsiteASP_NETEntities2.Categories.ToList();
         
             return View(lstCategory);
         }
         public ActionResult ProductCategory(int Id)
 
         {
-            var listProduct = objWebsiteASP_NETEntities1.Products.Where(n => n.CategoryId == Id).ToList();
+            var listProduct = objWebsiteASP_NETEntities2.Products.Where(n => n.CategoryId == Id).ToList();
             return View(listProduct);
         }
     }

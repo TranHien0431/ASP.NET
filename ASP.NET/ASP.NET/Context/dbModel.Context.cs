@@ -13,10 +13,10 @@ namespace ASP.NET.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebsiteASP_NETEntities1 : DbContext
+    public partial class WebsiteASP_NETEntities2 : DbContext
     {
-        public WebsiteASP_NETEntities1()
-            : base("name=WebsiteASP_NETEntities1")
+        public WebsiteASP_NETEntities2()
+            : base("name=WebsiteASP_NETEntities2")
         {
         }
     
@@ -28,6 +28,7 @@ namespace ASP.NET.Context
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebsiteASP_NETModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ShowOnHomePage" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__BrandId__4E88ABD4" FromRole="Brand" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ShowOnHomePage" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__4D94879B" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="ShortDes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FullDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="PriceDiscount" Type="Double" />
+    <Property Name="TypeId" Type="Int32" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BrandId" Type="Int32" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="ShowOnHomePage" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Brand" Relationship="Self.FK__Product__BrandId__4E88ABD4" FromRole="Product" ToRole="Brand" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__4D94879B" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrderDetails" Relationship="WebsiteASP_NETModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK__Product__BrandId__4E88ABD4">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Categor__4D94879B">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebsiteASP_NETEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Product__BrandId__4E88ABD4" Association="Self.FK__Product__BrandId__4E88ABD4">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Categor__4D94879B" Association="Self.FK__Product__Categor__4D94879B">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="Orders" EntityType="WebsiteASP_NETModel.Order" />
+    <EntitySet Name="OrderDetails" EntityType="WebsiteASP_NETModel.OrderDetail" />
+    <AssociationSet Name="FK_OrderDetail_Order" Association="WebsiteASP_NETModel.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="WebsiteASP_NETModel.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="OrderDetails" Relationship="WebsiteASP_NETModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="WebsiteASP_NETModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="WebsiteASP_NETModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_OrderDetail_Order">
+    <End Type="WebsiteASP_NETModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="WebsiteASP_NETModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Type="WebsiteASP_NETModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="WebsiteASP_NETModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

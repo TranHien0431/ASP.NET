@@ -93,11 +93,12 @@
                                 </a>
                             </div>
                             <div class="widget-header">
-                                <a href="@Url.Action("Cart", "Shopping")" class="widget-view">
+                                <a href="@Url.Action("Index", "Cart")" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
+                                        <div class="notify"id="CartCount">@Session["count"]</div>
                                     </div>
-                                    <small class="text"> Cart </small>
+                                    <small class="text">Cart</small>
                                 </a>
                             </div>
                         </div> <!-- widgets-wrap.// -->

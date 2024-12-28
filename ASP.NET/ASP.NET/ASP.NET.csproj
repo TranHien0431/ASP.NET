@@ -156,22 +156,28 @@
     <Compile Include="Context\Order.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\OrderDetail.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\Product.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\User.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\ProductMasterData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2137,6 +2143,10 @@
     <Content Include="Content\images\banners\slide1.jpg" />
     <Content Include="Content\images\banners\slide2.jpg" />
     <Content Include="Content\images\banners\slide3.jpg" />
+    <Content Include="Content\images\banners\slide4.jpg" />
+    <Content Include="Content\images\banners\slide5.jpg" />
+    <Content Include="Content\images\banners\slide6.jpg" />
+    <Content Include="Content\images\banners\slide7.jpg" />
     <Content Include="Content\images\category\17.jpg" />
     <Content Include="Content\images\category\18.jpg" />
     <Content Include="Content\images\category\19.jpg" />
@@ -2187,6 +2197,11 @@
     <Content Include="Content\images\items\22.jpg" />
     <Content Include="Content\images\items\23.jpg" />
     <Content Include="Content\images\items\3.jpg" />
+    <Content Include="Content\images\items\30.jpg" />
+    <Content Include="Content\images\items\31.jpg" />
+    <Content Include="Content\images\items\33.jpg" />
+    <Content Include="Content\images\items\34.jpg" />
+    <Content Include="Content\images\items\35.jpg" />
     <Content Include="Content\images\items\4.jpg" />
     <Content Include="Content\images\items\5.jpg" />
     <Content Include="Content\images\items\6.jpg" />
@@ -2200,9 +2215,16 @@
     <Content Include="Content\images\misc\payments.png" />
     <Content Include="Content\images\misc\playmarket.png" />
     <Content Include="Content\images\posts\1.jpg" />
+    <Content Include="Content\images\posts\10.jpg" />
+    <Content Include="Content\images\posts\12.jpg" />
     <Content Include="Content\images\posts\2.jpg" />
     <Content Include="Content\images\posts\3.jpg" />
     <Content Include="Content\images\posts\4.jpg" />
+    <Content Include="Content\images\posts\5.jpg" />
+    <Content Include="Content\images\posts\6.jpg" />
+    <Content Include="Content\images\posts\7.jpg" />
+    <Content Include="Content\images\posts\8.jpg" />
+    <Content Include="Content\images\posts\9.jpg" />
     <Content Include="Context\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
@@ -2403,6 +2425,11 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <EntityDeploy Include="Context\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
@@ -2410,9 +2437,6 @@
     <Content Include="Context\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2443,7 +2467,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Category\AllCategory.cshtml" />
-    <Content Include="Views\Shopping\Cart.cshtml" />
     <Content Include="Views\Profile\Address.cshtml" />
     <Content Include="Views\Profile\Main.cshtml" />
     <Content Include="Views\Profile\Orders.cshtml" />
@@ -2455,11 +2478,12 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

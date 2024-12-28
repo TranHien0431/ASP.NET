@@ -11,13 +11,14 @@ namespace ASP.NET.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int Id { get; set; }
@@ -40,6 +41,8 @@ namespace ASP.NET.Context
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
+
 }

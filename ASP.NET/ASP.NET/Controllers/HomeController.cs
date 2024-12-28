@@ -14,12 +14,12 @@ namespace ASP.NET.Controllers
 
     public class HomeController : Controller
     {
-        WebsiteASP_NETEntities1 objWebsiteASP_NETEntities1 = new WebsiteASP_NETEntities1();
+        WebsiteASP_NETEntities2 objWebsiteASP_NETEntities2 = new WebsiteASP_NETEntities2();
         public ActionResult Index()
         {
             HomeModel objHomeModel = new HomeModel();
-            objHomeModel.ListProduct = objWebsiteASP_NETEntities1.Products.ToList();
-            objHomeModel.ListCategory = objWebsiteASP_NETEntities1.Categories.ToList();
+            objHomeModel.ListProduct = objWebsiteASP_NETEntities2.Products.ToList();
+            objHomeModel.ListCategory = objWebsiteASP_NETEntities2.Categories.ToList();
             return View(objHomeModel);
         }
 
@@ -34,13 +34,13 @@ namespace ASP.NET.Controllers
         {
             if (ModelState.IsValid)
             {
-                var check = objWebsiteASP_NETEntities1.Users.FirstOrDefault(s => s.Email == _user.Email);
+                var check = objWebsiteASP_NETEntities2.Users.FirstOrDefault(s => s.Email == _user.Email);
                 if (check == null)
                 {
                     _user.Password = GetMD5(_user.Password);
-                    objWebsiteASP_NETEntities1.Configuration.ValidateOnSaveEnabled = false;
-                    objWebsiteASP_NETEntities1.Users.Add(_user);
-                    objWebsiteASP_NETEntities1.SaveChanges();
+                    objWebsiteASP_NETEntities2.Configuration.ValidateOnSaveEnabled = false;
+                    objWebsiteASP_NETEntities2.Users.Add(_user);
+                    objWebsiteASP_NETEntities2.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
@@ -78,7 +78,7 @@ namespace ASP.NET.Controllers
 
 
                 var f_password = GetMD5(password);
-                var data = objWebsiteASP_NETEntities1.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                var data = objWebsiteASP_NETEntities2.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
                 if (data.Count() > 0)
                 {
                     //add session

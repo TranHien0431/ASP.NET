@@ -4,15 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a7bb00d114de48209bf68342b8671ca8" Name="Diagram1">
+      <Diagram DiagramId="4593eb36bd2f44178c63a86ed153ac97" Name="Diagram1">
         <EntityTypeShape EntityType="WebsiteASP_NETModel.Brand" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WebsiteASP_NETModel.Category" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebsiteASP_NETModel.Order" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.Order" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteASP_NETModel.OrderDetail" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WebsiteASP_NETModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WebsiteASP_NETModel.User" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="WebsiteASP_NETModel.FK__Product__BrandId__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="WebsiteASP_NETModel.FK__Product__Categor__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="WebsiteASP_NETModel.FK__Order__ProductId__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteASP_NETModel.FK_OrderDetail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteASP_NETModel.FK_OrderDetail_Product" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

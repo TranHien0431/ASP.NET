@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WebsiteASP_NETModelStoreContainer" CdmEntityContainer="WebsiteASP_NETEntities1">
+  <EntityContainerMapping StorageEntityContainer="WebsiteASP_NETModelStoreContainer" CdmEntityContainer="WebsiteASP_NETEntities2">
     <EntitySetMapping Name="Brands">
       <EntityTypeMapping TypeName="WebsiteASP_NETModel.Brand">
         <MappingFragment StoreEntitySet="Brand">
@@ -36,10 +36,19 @@
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="WebsiteASP_NETModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

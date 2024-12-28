@@ -38,11 +38,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" />
-          <Property Name="ProductId" Type="int" />
-          <Property Name="Price" Type="float" />
-          <Property Name="Status" Type="int" />
-          <Property Name="CreatedOnUtc" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -76,18 +84,6 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="IsAdmin" Type="bit" />
         </EntityType>
-        <Association Name="FK__Order__ProductId__5165187F">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Product__BrandId__4E88ABD4">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -112,16 +108,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WebsiteASP_NETModelStoreContainer">
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Order__ProductId__5165187F" Association="Self.FK__Order__ProductId__5165187F">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK__Product__BrandId__4E88ABD4" Association="Self.FK__Product__BrandId__4E88ABD4">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Product" EntitySet="Product" />
@@ -129,6 +146,14 @@
           <AssociationSet Name="FK__Product__Categor__4D94879B" Association="Self.FK__Product__Categor__4D94879B">
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -171,12 +196,22 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProductId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Order__ProductId__5165187F" FromRole="Order" ToRole="Product" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -200,7 +235,7 @@
           <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__Product__BrandId__4E88ABD4" FromRole="Product" ToRole="Brand" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__4D94879B" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__ProductId__5165187F" FromRole="Product" ToRole="Order" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -237,22 +272,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__ProductId__5165187F">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="OrderDetail">
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WebsiteASP_NETEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WebsiteASP_NETEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK__Product__BrandId__4E88ABD4" Association="Self.FK__Product__BrandId__4E88ABD4">
@@ -263,9 +311,13 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__ProductId__5165187F" Association="Self.FK__Order__ProductId__5165187F">
-            <End Role="Product" EntitySet="Products" />
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -273,7 +325,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebsiteASP_NETModelStoreContainer" CdmEntityContainer="WebsiteASP_NETEntities1">
+        <EntityContainerMapping StorageEntityContainer="WebsiteASP_NETModelStoreContainer" CdmEntityContainer="WebsiteASP_NETEntities2">
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="WebsiteASP_NETModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
@@ -309,10 +361,19 @@
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="WebsiteASP_NETModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
