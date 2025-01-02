@@ -63,7 +63,7 @@
                                             <h6 class="card-title">@category.Name</h6>
                                             <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
                                         </div>
-                                        <img src="~/Content/images/items/1.jpg" height="80" class="img-bg">
+                                        <img src="~/Content/images/category/@category.Avatar"height="80" class="img-bg" alt="@category.Name">
                                     </div>
                                 }
                             </aside>
@@ -84,10 +84,10 @@
                         <p>Hygiene equipments</p>
                     </header><!-- sect-heading -->
                     <div class="timer">
-                        <div> <span class="num">04</span> <small>Days</small></div>
-                        <div> <span class="num">12</span> <small>Hours</small></div>
-                        <div> <span class="num">58</span> <small>Min</small></div>
-                        <div> <span class="num">02</span> <small>Sec</small></div>
+                        <div> <span class="num">04</span> <small>Ngày</small></div>
+                        <div> <span class="num">12</span> <small>Giờ</small></div>
+                        <div> <span class="num">58</span> <small>Phút</small></div>
+                        <div> <span class="num">02</span> <small>Giây</small></div>
                     </div>
                 </div> <!-- col.// -->
                 <div class="row no-gutters items-wrap">
@@ -122,10 +122,8 @@
                     <div class="col-md-3">
 
                         <div class="home-category-banner bg-light-orange">
-                            <h5 class="title">Best trending clothes only for summer</h5>
-                            <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-                            <img src="~/Content/images/items/2.jpg" class="img-bg">
+                           
+                            <img src="~/Content/images/items/45.jpg" class="img-bg">
                         </div>
 
                     </div> <!-- col.// -->
@@ -134,9 +132,9 @@
                             @foreach (var product in Model.ListProduct.Where(n=>n.BrandId==1))
                             {
                                 <li class="col-6 col-lg-3 col-md-4">
-                                    <a href="#" class="item">
+                                    <a href="@Url.Action("ProductDetail","Product", new { Id= product.Id})" class="item">
                                         <div class="card-body">
-                                            <h6 class="title">Well made women clothes with trending collection  </h6>
+                                            <h6 class="title">@product.ShortDes</h6>
                                             <img class="img-sm float-right" src="~/Content/images/items/@product.Avatar" alt="@product.Name">
                                             <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @product.Name</p>
                                         </div>
@@ -160,10 +158,10 @@
                     <div class="col-md-3">
 
                         <div class="home-category-banner bg-light-orange">
-                            <h5 class="title">Machinery items for manufacturers</h5>
-                            <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-                            <img src="~/Content/images/items/14.jpg" class="img-bg">
+                            
+                           
+                           
+                            <img src="~/Content/images/items/60.jpg" class="img-bg">
                         </div>
 
                     </div> <!-- col.// -->
@@ -172,9 +170,9 @@
                             @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 2))
                             {
                                 <li class="col-6 col-lg-3 col-md-4">
-                                    <a href="#" class="item">
+                                    <a href="@Url.Action("ProductDetail","Product", new { Id= product.Id})" class="item">
                                         <div class="card-body">
-                                            <h6 class="title">Well made women clothes with trending collection  </h6>
+                                            <h6 class="title">@product.ShortDes</h6>
                                             <img class="img-sm float-right" src="~/Content/images/items/@product.Avatar" alt="@product.Name">
                                             <p class="text-muted"><i class="fa fa-map-marker-alt"></i> @product.Name</p>
                                         </div>
@@ -192,17 +190,17 @@
         <section class="padding-bottom">
 
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Request for Quotation</h4>
+                <h4 class="title-section text-uppercase">Yêu cầu báo giá</h4>
             </header>
 
             <div class="row">
                 <div class="col-md-8">
                     <div class="card-banner banner-quote overlay-gradient" style="background-image: url('~/Content/images/banners/banner9.jpg');">
                         <div class="card-img-overlay white">
-                            <h3 class="card-title">An easy way to send request to suppliers</h3>
+                            <h3 class="card-title">Một cách dễ dàng để gửi yêu cầu đến nhà cung cấp</h3>
                             <p class="card-text" style="max-width: 400px">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt.
+                               Thời trang nam là sự kết hợp của các trang phục, phụ kiện
+                                và phong cách thể hiện cá tính, sự tự tin và gu thẩm mỹ của người đàn ông. 
                             </p>
                             <a href="" class="btn btn-primary rounded-pill">Learn more</a>
                         </div>
@@ -211,21 +209,24 @@
                 <div class="col-md-4">
 
                     <div class="card card-body">
-                        <h4 class="title py-3">One Request, Multiple Quotes</h4>
+                        <h4 class="title py-3">Một yêu cầu, nhiều báo giá</h4>
+
                         <form>
                             <div class="form-group">
-                                <input class="form-control" name="" placeholder="What are you looking for?" type="text">
+                                <input class="form-control" name="" placeholder="Bạn đang tìm kiếm gì?" type="text">
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <input class="form-control" placeholder="Quantity" name="" type="text">
 
                                     <select class="custom-select form-control">
-                                        <option>Pieces</option>
-                                        <option>Litres</option>
-                                        <option>Tons</option>
-                                        <option>Gramms</option>
+                                        <option>S</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                        <option>XXL</option>
+                                        <option>XXXL</option>
                                     </select>
+
                                 </div>
                             </div>
                             <div class="form-group text-muted">
@@ -281,7 +282,7 @@
         <section class="padding-bottom">
 
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Trade services</h4>
+                <h4 class="title-section text-uppercase">Dịch vụ thương mại</h4>
             </header>
 
             <div class="row">
@@ -329,7 +330,7 @@
         <section class="padding-bottom">
 
             <header class="section-heading heading-line">
-                <h4 class="title-section text-uppercase">Choose region</h4>
+                <h4 class="title-section text-uppercase">Chọn khu vực</h4>
             </header>
 
             <ul class="row mt-4">

@@ -34,52 +34,61 @@
                             <img class="logo" src="~/Content/images/logo.png">
                         </a> <!-- brand-wrap.// -->
                     </div>
-                    <div class="col-xl-6 col-lg-5 col-md-6">
-                        <form action="#" class="search-header">
-                            <div class="input-group w-100">
-                                <select class="custom-select border-right" name="category_name">
-                                    <option value="">All type</option>
-                                    <option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
-                                </select>
-                                <input type="text" class="form-control" placeholder="Search">
+                   <div class="col-xl-6 col-lg-5 col-md-6">
+    <form action="#" class="search-header">
+        <div class="input-group w-100">
+            <select class="custom-select border-right" name="category_name">
+                <option value="">Tất cả loại</option>
+                <option value="codex">Áo Thun</option>
+                <option value="comments">Chân váy</option>
+                <option value="content">Áo khoác</option>
+            </select>
+            <input type="text" class="form-control" placeholder="Tìm kiếm">
 
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fa fa-search"></i> Search
-                                    </button>
-                                </div>
-                            </div>
-                        </form> <!-- search-wrap .end// -->
-                    </div> <!-- col.// -->
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search"></i> Tìm kiếm
+                </button>
+            </div>
+        </div>
+    </form> <!-- search-wrap .end// -->
+</div> <!-- col.// -->
+
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="widgets-wrap float-md-right">
-                            <div class="widget-header mr-3">
-                                <a href="@Url.Action("Main", "Profile")" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-user"></i>
-                                        <span class="notify">3</span>
+                            <div style="display: flex; align-items: center; gap: 1rem; font-family: Arial, sans-serif; margin-left:15px">
+                                <a href="@Url.Action("Main", "Profile")" style="text-decoration: none; color: inherit; position: relative;">
+                                    <div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; position: relative;">
+                                        <i class="fa fa-user" style="font-size: 20px; color: #000000;"></i> <!-- Đổi màu icon thành đen -->
+                                        <span style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; font-size: 12px; padding: 2px 5px; border-radius: 50%;">3</span>
                                     </div>
+                                </a>
+                                <ul style="list-style-type: none; margin: 0; padding: 0; display: flex; gap: 1rem; align-items: center;">
                                     @if (Session["idUser"] != null)
                                     {
-                                        <li><a href="~/Admin/Product/Index">Trang quản trị</a></li>
                                         <li>
-                                            <a href="~/Home/Logout" class="btn btn-warning">Logout</a>
+                                            <a href="~/Admin/Product/Index" style="text-decoration: none; color: #000000; font-size: 14px;">Trần Hiền</a> <!-- Đổi màu chữ thành đen -->
+                                        </li>
+                                        <li>
+                                            <a href="~/Home/Logout" style="text-decoration: none; color: white; background-color: #f0ad4e; padding: 5px 10px; border-radius: 5px; font-size: 14px;">Logout</a>
                                         </li>
                                     }
                                     else
                                     {
-                                        <li><a href="~/Home/Register">Đăng ký</a></li>
-                                        <li><a href="~/Home/Login">Đăng nhập</a></li>
+                                        <li>
+                                            <a href="~/Home/Register" style="text-decoration: none; color: #000000; font-size: 14px;">Đăng ký</a> <!-- Đổi màu chữ thành đen -->
+                                        </li>
+                                        <li>
+                                            <a href="~/Home/Login" style="text-decoration: none; color: #000000; font-size: 14px;">Đăng nhập</a> <!-- Đổi màu chữ thành đen -->
+                                        </li>
                                     }
-                                </a>
+                                </ul>
                             </div>
                             <div class="widget-header mr-3">
                                 <a href="#" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-comment-dots"></i>
-                                        <span class="notify">1</span>
+                                       
                                     </div>
                                     <small class="text"> Message </small>
                                 </a>
@@ -118,7 +127,7 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> Categories </a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> Danh mục </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Machinery</a>
                                 <a class="dropdown-item" href="#">Electronics</a>
@@ -130,19 +139,17 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ready to ship</a>
+                            <a class="nav-link" href="#">Vận chuyển</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Trade shows</a>
+                            <a class="nav-link" href="#">Thương mại</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="#">Dịch vụ</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sell with us</a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demo pages</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Áo Thun</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="page-index.html">Main</a>
                                 <a class="dropdown-item" href="page-category.html">All category</a>

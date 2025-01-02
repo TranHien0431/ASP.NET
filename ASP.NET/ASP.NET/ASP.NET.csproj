@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ProductMasterData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2132,6 +2133,7 @@
     <Content Include="Content\images\banners\banner-item2.jpg" />
     <Content Include="Content\images\banners\banner-item3.jpg" />
     <Content Include="Content\images\banners\banner1.jpg" />
+    <Content Include="Content\images\banners\banner11.jpg" />
     <Content Include="Content\images\banners\banner2.jpg" />
     <Content Include="Content\images\banners\banner3.jpg" />
     <Content Include="Content\images\banners\banner4.jpg" />
@@ -2154,6 +2156,8 @@
     <Content Include="Content\images\category\21.jpg" />
     <Content Include="Content\images\category\22.jpg" />
     <Content Include="Content\images\category\23.jpg" />
+    <Content Include="Content\images\category\48.jpg" />
+    <Content Include="Content\images\category\77.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\icons\flags\AU%402x.png" />
     <Content Include="Content\images\icons\flags\AU.png" />
@@ -2203,9 +2207,32 @@
     <Content Include="Content\images\items\34.jpg" />
     <Content Include="Content\images\items\35.jpg" />
     <Content Include="Content\images\items\4.jpg" />
+    <Content Include="Content\images\items\44.jpg" />
+    <Content Include="Content\images\items\45.jpg" />
+    <Content Include="Content\images\items\46.jpg" />
+    <Content Include="Content\images\items\47.jpg" />
+    <Content Include="Content\images\items\48.jpg" />
+    <Content Include="Content\images\items\49.jpg" />
     <Content Include="Content\images\items\5.jpg" />
+    <Content Include="Content\images\items\50.jpg" />
+    <Content Include="Content\images\items\51.jpg" />
+    <Content Include="Content\images\items\52.jpg" />
+    <Content Include="Content\images\items\53.jpg" />
+    <Content Include="Content\images\items\54.jpg" />
+    <Content Include="Content\images\items\55.jpg" />
+    <Content Include="Content\images\items\56.jpg" />
+    <Content Include="Content\images\items\57.jpg" />
     <Content Include="Content\images\items\6.jpg" />
+    <Content Include="Content\images\items\63.jpg" />
+    <Content Include="Content\images\items\64.jpg" />
+    <Content Include="Content\images\items\65.jpg" />
+    <Content Include="Content\images\items\66.jpg" />
+    <Content Include="Content\images\items\68.jpg" />
     <Content Include="Content\images\items\7.jpg" />
+    <Content Include="Content\images\items\75.jpg" />
+    <Content Include="Content\images\items\76.jpg" />
+    <Content Include="Content\images\items\78.jpg" />
+    <Content Include="Content\images\items\79.jpg" />
     <Content Include="Content\images\items\8.jpg" />
     <Content Include="Content\images\items\9.jpg" />
     <Content Include="Content\images\logo-white.png" />
