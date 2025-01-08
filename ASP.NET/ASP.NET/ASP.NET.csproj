@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,8 +136,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Context\Brand.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -2134,6 +2144,7 @@
     <Content Include="Content\images\banners\banner-item3.jpg" />
     <Content Include="Content\images\banners\banner1.jpg" />
     <Content Include="Content\images\banners\banner11.jpg" />
+    <Content Include="Content\images\banners\banner1a.jpg" />
     <Content Include="Content\images\banners\banner2.jpg" />
     <Content Include="Content\images\banners\banner3.jpg" />
     <Content Include="Content\images\banners\banner4.jpg" />
@@ -2149,6 +2160,13 @@
     <Content Include="Content\images\banners\slide5.jpg" />
     <Content Include="Content\images\banners\slide6.jpg" />
     <Content Include="Content\images\banners\slide7.jpg" />
+    <Content Include="Content\images\brand\ao.jpg" />
+    <Content Include="Content\images\brand\aopolo.jpg" />
+    <Content Include="Content\images\brand\aothun.jpg" />
+    <Content Include="Content\images\brand\chanvay.jpg" />
+    <Content Include="Content\images\brand\croptop.jpg" />
+    <Content Include="Content\images\brand\mu.jpg" />
+    <Content Include="Content\images\brand\quan.jpg" />
     <Content Include="Content\images\category\17.jpg" />
     <Content Include="Content\images\category\18.jpg" />
     <Content Include="Content\images\category\19.jpg" />
@@ -2157,6 +2175,7 @@
     <Content Include="Content\images\category\22.jpg" />
     <Content Include="Content\images\category\23.jpg" />
     <Content Include="Content\images\category\48.jpg" />
+    <Content Include="Content\images\category\7.jpg" />
     <Content Include="Content\images\category\77.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\icons\flags\AU%402x.png" />
@@ -2183,61 +2202,59 @@
     <Content Include="Content\images\icons\pay-visa-el.png" />
     <Content Include="Content\images\icons\pay-visa.png" />
     <Content Include="Content\images\items\1.jpg" />
-    <Content Include="Content\images\items\10.jpg" />
-    <Content Include="Content\images\items\11.jpg" />
-    <Content Include="Content\images\items\12.jpg" />
-    <Content Include="Content\images\items\13.jpg" />
-    <Content Include="Content\images\items\14.jpg" />
-    <Content Include="Content\images\items\15-1.jpg" />
-    <Content Include="Content\images\items\15-2.jpg" />
-    <Content Include="Content\images\items\15.jpg" />
-    <Content Include="Content\images\items\16.jpg" />
-    <Content Include="Content\images\items\17.jpg" />
-    <Content Include="Content\images\items\18.jpg" />
-    <Content Include="Content\images\items\19.jpg" />
+    <Content Include="Content\images\items\1a.jpg" />
+    <Content Include="Content\images\items\1b.jpg" />
+    <Content Include="Content\images\items\1c.jpg" />
+    <Content Include="Content\images\items\1d.jpg" />
+    <Content Include="Content\images\items\1e.jpg" />
+    <Content Include="Content\images\items\1f.jpg" />
+    <Content Include="Content\images\items\1g.jpg" />
+    <Content Include="Content\images\items\1h.jpg" />
     <Content Include="Content\images\items\2.jpg" />
-    <Content Include="Content\images\items\20.jpg" />
-    <Content Include="Content\images\items\21.jpg" />
-    <Content Include="Content\images\items\22.jpg" />
-    <Content Include="Content\images\items\23.jpg" />
+    <Content Include="Content\images\items\2a.jpg" />
+    <Content Include="Content\images\items\2b.jpg" />
+    <Content Include="Content\images\items\2c.jpg" />
+    <Content Include="Content\images\items\2d.jpg" />
     <Content Include="Content\images\items\3.jpg" />
-    <Content Include="Content\images\items\30.jpg" />
-    <Content Include="Content\images\items\31.jpg" />
-    <Content Include="Content\images\items\33.jpg" />
-    <Content Include="Content\images\items\34.jpg" />
-    <Content Include="Content\images\items\35.jpg" />
+    <Content Include="Content\images\items\3a.jpg" />
+    <Content Include="Content\images\items\3b.jpg" />
+    <Content Include="Content\images\items\3c.jpg" />
+    <Content Include="Content\images\items\3d.jpg" />
+    <Content Include="Content\images\items\3e.jpg" />
+    <Content Include="Content\images\items\3f.jpg" />
+    <Content Include="Content\images\items\3g.jpg" />
     <Content Include="Content\images\items\4.jpg" />
-    <Content Include="Content\images\items\44.jpg" />
-    <Content Include="Content\images\items\45.jpg" />
-    <Content Include="Content\images\items\46.jpg" />
-    <Content Include="Content\images\items\47.jpg" />
-    <Content Include="Content\images\items\48.jpg" />
-    <Content Include="Content\images\items\49.jpg" />
+    <Content Include="Content\images\items\4a.jpg" />
+    <Content Include="Content\images\items\4b.jpg" />
+    <Content Include="Content\images\items\4c.jpg" />
+    <Content Include="Content\images\items\4d.jpg" />
+    <Content Include="Content\images\items\4e.jpg" />
+    <Content Include="Content\images\items\4f.jpg" />
+    <Content Include="Content\images\items\4g.jpg" />
+    <Content Include="Content\images\items\4h.jpg" />
+    <Content Include="Content\images\items\4t.jpg" />
     <Content Include="Content\images\items\5.jpg" />
-    <Content Include="Content\images\items\50.jpg" />
-    <Content Include="Content\images\items\51.jpg" />
-    <Content Include="Content\images\items\52.jpg" />
-    <Content Include="Content\images\items\53.jpg" />
-    <Content Include="Content\images\items\54.jpg" />
-    <Content Include="Content\images\items\55.jpg" />
-    <Content Include="Content\images\items\56.jpg" />
-    <Content Include="Content\images\items\57.jpg" />
+    <Content Include="Content\images\items\5a.jpg" />
+    <Content Include="Content\images\items\5b.jpg" />
+    <Content Include="Content\images\items\5c.jpg" />
+    <Content Include="Content\images\items\5d.jpg" />
     <Content Include="Content\images\items\6.jpg" />
-    <Content Include="Content\images\items\63.jpg" />
-    <Content Include="Content\images\items\64.jpg" />
-    <Content Include="Content\images\items\65.jpg" />
-    <Content Include="Content\images\items\66.jpg" />
-    <Content Include="Content\images\items\68.jpg" />
+    <Content Include="Content\images\items\6a.jpg" />
+    <Content Include="Content\images\items\6b.jpg" />
+    <Content Include="Content\images\items\6c.jpg" />
+    <Content Include="Content\images\items\6d.jpg" />
+    <Content Include="Content\images\items\6e.jpg" />
+    <Content Include="Content\images\items\6f.jpg" />
+    <Content Include="Content\images\items\6g.jpg" />
     <Content Include="Content\images\items\7.jpg" />
-    <Content Include="Content\images\items\75.jpg" />
-    <Content Include="Content\images\items\76.jpg" />
-    <Content Include="Content\images\items\78.jpg" />
-    <Content Include="Content\images\items\79.jpg" />
-    <Content Include="Content\images\items\8.jpg" />
-    <Content Include="Content\images\items\9.jpg" />
+    <Content Include="Content\images\items\7a.jpg" />
+    <Content Include="Content\images\items\7b.jpg" />
+    <Content Include="Content\images\items\7c.jpg" />
+    <Content Include="Content\images\items\7d.jpg" />
     <Content Include="Content\images\logo-white.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\logo1.png" />
     <Content Include="Content\images\misc\appstore.png" />
     <Content Include="Content\images\misc\payments.png" />
     <Content Include="Content\images\misc\playmarket.png" />
@@ -2252,6 +2269,7 @@
     <Content Include="Content\images\posts\7.jpg" />
     <Content Include="Content\images\posts\8.jpg" />
     <Content Include="Content\images\posts\9.jpg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Context\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
@@ -2314,7 +2332,6 @@
     <Content Include="Content\images\.DS_Store" />
     <Content Include="Content\images\banners\.DS_Store" />
     <Content Include="Content\images\icons\.DS_Store" />
-    <Content Include="Content\images\items\.DS_Store" />
     <Content Include="Content\images\posts\.DS_Store" />
     <Content Include="Content\admin\dist\css\adminlte.css.map" />
     <Content Include="Content\admin\dist\css\adminlte.min.css.map" />
@@ -2464,6 +2481,26 @@
     <Content Include="Context\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2507,6 +2544,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Category\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -62,9 +62,9 @@
                         </div> <!-- slider-product.// -->
                         <div class="thumbs-wrap">
                             <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/20.jpg"></a>
                             <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/17.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
                         </div> <!-- slider-nav.// -->
                     </article> <!-- gallery-wrap .end// -->
                 </div> <!-- card.// -->
@@ -87,12 +87,12 @@
                                 <i class="fa fa-star"></i>
                             </li>
                         </ul>
-                        <small class="label-rating text-muted">132 reviews</small>
-                        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+                        <small class="label-rating text-muted">132 Người xem</small>
+                        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 Đơn hàng </small>
                     </div> <!-- rating-wrap.// -->
 
                     <div class="mb-3">
-                        <var class="price h4"> @Model.Price</var>
+                        <var class="price h4"> @((Model.Price ?? 0).ToString("N0")) VNĐ</var>
                        
                     </div> <!-- price-detail-wrap .// -->
 

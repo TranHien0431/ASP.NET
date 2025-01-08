@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ASP.NET.Context.Product>
+
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+}
+
+<h2 class="mb-4">
+    Kết quả tìm kiếm
+    @if (Model.Any())
+    {
+        <span>(@Model.Count() sản phẩm)</span>
+    }
+</h2>
+<!-- Form lọc giá -->
+<div class="filter-form mb-4">
+    <form method="get" action="@Url.Action("Search", "Category")" class="form-inline">
+        <div class="form-group mr-3">
+            <label for="minPrice" class="mr-2">Giá từ:</label>
+            <input type="number" id="minPrice" name="minPrice" class="form-control" value="@Request.QueryString["minPrice"]">
+        </div>
+        <div class="form-group mr-3">
+            <label for="maxPrice" class="mr-2">đến:</label>
+            <input type="number" id="maxPrice" name="maxPrice" class="form-control" value="@Request.QueryString["maxPrice"]">
+        </div>
+        <button type="submit" class="btn btn-primary">Lọc</button>
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <p>Không tìm thấy sản phẩm nào phù hợp.</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <article class="card card-product-list mb-3">
+            <div class="row no-gutters">
+                <aside class="col-md-3">
+                    <a href="@Url.Action("ProductDetail", "Product", new { Id = item.Id })" class="img-wrap">
+                        <img src="~/Content/images/items/@item.Avatar" alt="@item.Name" class="img-fluid">
+                    </a>
+                </aside>
+                <div class="col-md-6">
+                    <div class="info-main">
+                        <a href="@Url.Action("ProductDetail", "Product", new { Id = item.Id })" class="h5 title">
+                            @item.Name
+                        </a>
+                        <p class="mt-2 text-muted">@item.ShortDes</p>
+                        <p class="mt-2 text-muted">@item.FullDescription</p>
+                    </div>
+                </div>
+                <aside class="col-sm-3">
+                    <div class="info-aside">
+                        <div class="price-wrap">
+                            <span class="h5 price">@String.Format("{0:N0} đ", item.Price)</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </article>
+    }
+
+    <!-- Phân trang -->
+    <div class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <a href="@Url.Action("Search", "Category", new { keyword = Request.QueryString["keyword"], minPrice = Request.QueryString["minPrice"], maxPrice = Request.QueryString["maxPrice"], page = i })" class="btn @((i == ViewBag.CurrentPage) ? "btn-primary" : "btn-secondary")">
+                @i
+            </a>
+        }
+    </div>
+}
+
+<style>
+    /* Định dạng form lọc giá */
+    .filter-form {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Thẻ h2 tiêu đề */
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #343a40;
+    }
+
+    /* Card sản phẩm */
+    .card-product-list {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card-product-list:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Ảnh sản phẩm */
+    .img-wrap img {
+        object-fit: cover;
+        border-radius: 8px 0 0 8px;
+    }
+
+    /* Tiêu đề sản phẩm */
+    .card-product-list .info-main .title {
+        font-size: 20px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .card-product-list .info-main .title:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+    /* Giá sản phẩm */
+    .price-wrap .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .price-wrap small {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    <style >
+    /* Phân trang */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        padding: 8px 16px;
+        margin: 0 5px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #007bff;
+    }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination a.btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination a.btn-secondary {
+            background-color: #e0e0e0;
+            color: #6c757d;
+        }
+</style>
+
+</style>

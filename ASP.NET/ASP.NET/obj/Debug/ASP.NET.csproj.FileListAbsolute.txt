@@ -243,3 +243,7 @@ E:\ASP.NET\ASP.NET\ASP.NET\obj\Debug\ASP.NET.csproj.CoreCompileInputs.cache
 E:\ASP.NET\ASP.NET\ASP.NET\obj\Debug\ASP.NET.csproj.CopyComplete
 E:\ASP.NET\ASP.NET\ASP.NET\obj\Debug\ASP.NET.dll
 E:\ASP.NET\ASP.NET\ASP.NET\obj\Debug\ASP.NET.pdb
+E:\ASP.NET\ASP.NET\ASP.NET\bin\PagedList.dll
+E:\ASP.NET\ASP.NET\ASP.NET\bin\PagedList.Mvc.dll
+E:\ASP.NET\ASP.NET\ASP.NET\bin\PagedList.xml
+E:\ASP.NET\ASP.NET\ASP.NET\bin\PagedList.Mvc.xml
