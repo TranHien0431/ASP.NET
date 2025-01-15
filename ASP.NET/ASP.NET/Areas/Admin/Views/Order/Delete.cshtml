@@ -9,11 +9,11 @@
 
 <h3>Bạn có chắc là muốn xóa đơn hàng này không?</h3>
 <div>
-    <h4>Order</h4>
+    <h4>Đơn hàng</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên đơn hàng
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            ID Người mua hàng
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            Trạng thái
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -51,8 +51,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
         </div>
     }
 </div>

@@ -9,11 +9,11 @@
 
 <h3>Bạn có chắc xóa thành viên này không?</h3>
 <div>
-    <h4>User</h4>
+    <h4>Thành viên</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            Tên
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            Họ
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
+            Mật khẩu
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsAdmin)
+            Quyền Admin
         </dt>
 
         <dd>
@@ -59,8 +59,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
         </div>
     }
 </div>

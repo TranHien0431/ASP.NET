@@ -10,7 +10,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm đơn hàng", "Create")
 </p>
 <p>
     @using (Html.BeginForm("Index", "Order", FormMethod.Get))
@@ -26,13 +26,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].Name)
+           Tên đơn hàng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].UserId)
+            ID Người mua hàng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Status)
+           Trạng thái
         </th>
         <th></th>
     </tr>
@@ -50,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -17,7 +17,6 @@
                                         <a href="@Url.Action("ProductCategory", "Category", new { id = category.Id })">@category.Name</a>
                                     </li>
                                 }
-
                             </ul>
                         </nav>
                     </aside> <!-- col.// -->
@@ -53,21 +52,22 @@
                         <!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->
 
                     </div> <!-- col.// -->
-                    <div class="col-md d-none d-lg-block flex-grow-1">
-                        <aside class="special-home-right">
-                            <h6 class="bg-blue text-center text-white mb-0 p-2">Danh mục phổ biến</h6>
-                            @foreach (var category in Model.ListCategory.Where(n => n.ShowOnHomePage == true).Take(3))
-                            {
-                                <div class="card-banner border-bottom">
-                                    <div class="py-3" style="width:80%">
-                                        <h6 class="card-title">@category.Name</h6>
-                                        <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
-                                    </div>
-                                    <img src="~/Content/images/category/@category.Avatar" height="80" class="img-bg" alt="@category.Name">
-                                </div>
-                            }
-                        </aside>
-                    </div> <!-- col.// -->
+                   <div class="col-md d-none d-lg-block flex-grow-1">
+    <aside class="special-home-right">
+        <h6 class="bg-blue text-center text-white mb-0 p-2">Danh mục phổ biến</h6>
+        @foreach (var category in Model.ListCategory.Where(n => n.ShowOnHomePage == true).Take(3))
+        {
+            <div class="card-banner border-bottom">
+                <div class="py-3" style="width:80%">
+                    <h6 class="card-title">@category.Name</h6>
+                    <a href="@Url.Action("ProductCategory", "Category", new { id = category.Id })" class="btn btn-secondary btn-sm"> Nguồn hàng ngay </a>
+                </div>
+                <img src="~/Content/images/category/@category.Avatar" height="80" class="img-bg" alt="@category.Name">
+            </div>
+        }
+    </aside>
+</div> <!-- col.// -->
+
                 </div> <!-- row.// -->
 
             </div> <!-- card-body.// -->
@@ -84,10 +84,10 @@
                     <p>Hygiene equipments</p>
                 </header><!-- sect-heading -->
                 <div class="timer">
-                    <div> <span class="num">04</span> <small>Ngày</small></div>
-                    <div> <span class="num">12</span> <small>Giờ</small></div>
-                    <div> <span class="num">58</span> <small>Phút</small></div>
-                    <div> <span class="num">02</span> <small>Giây</small></div>
+                    <div><span class="num" id="days">00</span> <small>Ngày</small></div>
+                    <div><span class="num" id="hours">00</span> <small>Giờ</small></div>
+                    <div><span class="num" id="minutes">00</span> <small>Phút</small></div>
+                    <div><span class="num" id="seconds">00</span> <small>Giây</small></div>
                 </div>
             </div> <!-- col.// -->
             <div class="row no-gutters items-wrap">
@@ -123,13 +123,13 @@
 
                     <div class="home-category-banner bg-light-orange">
 
-                        <img src="~/Content/images/items/45.jpg" class="img-bg">
+                        <img src="~/Content/images/items/9a.jpg" class="img-bg">
                     </div>
 
                 </div> <!-- col.// -->
                 <div class="col-md-9">
                     <ul class="row no-gutters bordered-cols">
-                        @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 1))
+                        @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 1).Take(4))
                         {
                             <li class="col-6 col-lg-3 col-md-4">
                                 <a href="@Url.Action("ProductDetail","Product", new { Id= product.Id})" class="item">
@@ -157,17 +157,17 @@
             <div class="row no-gutters">
                 <div class="col-md-3">
 
-                    <div class="home-category-banner bg-light-orange">
+                    <div class="home-category-banner bg-light-orange ">
 
 
 
-                        <img src="~/Content/images/items/60.jpg" class="img-bg">
+                        <img src="~/Content/images/items/9.jpg" class="img-bg">
                     </div>
 
                 </div> <!-- col.// -->
                 <div class="col-md-9">
                     <ul class="row no-gutters bordered-cols">
-                        @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 2))
+                        @foreach (var product in Model.ListProduct.Where(n => n.BrandId == 2).Take(4))
                         {
                             <li class="col-6 col-lg-3 col-md-4">
                                 <a href="@Url.Action("ProductDetail","Product", new { Id= product.Id})" class="item">
@@ -194,13 +194,13 @@
         </header>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="#">
-                    <img src="~/Content/images/banners/banner11.jpg" alt="Banner Image" style="width: 100%; height: auto;">
+                    <img src="~/Content/images/banners/banner11.jpg" alt="Banner Image" style="width: 90%; height: auto;">
                 </div>
 
             </div> <!-- col // -->
-            <div class="col-md-8">
+            <div class="col-md-9">
 
                 <div class="card card-body">
                     <h4 class="title py-3">Một yêu cầu, nhiều báo giá</h4>
@@ -257,39 +257,43 @@
                 <article class="card card-post">
                     <img src="~/Content/images/posts/5.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Trade Assurance</h6>
+                        <h6 class="title">Bảo đảm giao dịch</h6>
                         <p class="small text-uppercase text-muted">Bảo vệ đơn hàng</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
+
             <div class="col-md-3 col-sm-6">
                 <article class="card card-post">
                     <img src="~/Content/images/posts/6.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Pay anytime</h6>
+                        <h6 class="title">Thanh toán linh hoạt</h6>
                         <p class="small text-uppercase text-muted">Giải pháp tài chính</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
+
             <div class="col-md-3 col-sm-6">
                 <article class="card card-post">
                     <img src="~/Content/images/posts/10.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Inspection solution</h6>
+                        <h6 class="title">Giải pháp kiểm tra</h6>
                         <p class="small text-uppercase text-muted">Kiểm tra dễ dàng</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
+
             <div class="col-md-3 col-sm-6">
                 <article class="card card-post">
                     <img src="~/Content/images/posts/9.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Ocean and Air Shipping</h6>
+                        <h6 class="title">Vận chuyển đường biển và đường hàng không</h6>
                         <p class="small text-uppercase text-muted">Dịch vụ hậu cần</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
         </div> <!-- row.// -->
+
 
     </section>
     <!-- =============== SECTION SERVICES .//END =============== -->
@@ -312,39 +316,70 @@
             <li class="col-md col-6"><a href="#" class="icontext"> <i class="mr-3 fa fa-ellipsis-h"></i> <span>More regions</span> </a></li>
         </ul>
     </section>
-    <!-- =============== SECTION REGION .//END =============== -->
-
-    <article class="my-4">
+    <!-- ============ <article class="my-4">
         <img src="~/Content/images/banners/banner1a.jpg" style="height: 250px; width: auto;" class="w-100">
-    </article>
+    </article>=== SECTION REGION .//END =============== -->
+
+
 
 </div>
-    <!-- container end.// -->
-    <!-- ========================= SECTION SUBSCRIBE  ========================= -->
-    <section class="section-subscribe padding-y-lg">
-        <div class="container">
 
-            <p class="pb-2 text-center text-white">Cung cấp các xu hướng sản phẩm mới nhất và tin tức trong ngành ngay tới hộp thư đến của bạn</p>
+<!-- container end.// -->
+<!-- ========================= SECTION SUBSCRIBE  ========================= -->
+<!-- =========================    <section class="section-subscribe padding-y-lg">
+    <div class="container">
 
-            <div class="row justify-content-md-center">
-                <div class="col-lg-5 col-md-6">
-                    <form class="form-row">
-                        <div class="col-md-8 col-7">
-                            <input class="form-control border-0" placeholder="Your Email" type="email">
-                        </div> <!-- col.// -->
-                        <div class="col-md-4 col-5">
-                            <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng ký </button>
-                        </div> <!-- col.// -->
-                    </form>
-                    <small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
+        <p class="pb-2 text-center text-white">Cung cấp các xu hướng sản phẩm mới nhất và tin tức trong ngành ngay tới hộp thư đến của bạn</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-5 col-md-6">
+                <form class="form-row">
+                    <div class="col-md-8 col-7">
+                        <input class="form-control border-0" placeholder="Your Email" type="email">
+                    </div> <!-- col.// -->
+<!-- ========================= <div class="col-md-4 col-5">
+    <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng ký </button>
+</div> <!-- col.// -->
+<!-- ==</form>
+<!-- ==<small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
                 </div> <!-- col-md-6.// -->
-            </div>
-            h
+<!-- == </div>
 
-        </div>
-    </section>
-    <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
-    <!-- ========================= FOOTER ========================= -->
 
-</body>
-</html>
+    </div>
+</section> ========================= -->
+
+<script>
+    // Thời gian kết thúc
+const endTime = new Date("2025-01-20T00:00:00").getTime(); // Đặt thời gian đích ở đây
+
+// Hàm cập nhật countdown
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endTime - now;
+
+    if (distance < 0) {
+        document.querySelector(".timer").innerHTML = "Hết thời gian!";
+        clearInterval(interval);
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Cập nhật HTML
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+}
+
+// Cập nhật mỗi giây
+const interval = setInterval(updateCountdown, 1000);
+
+// Gọi ngay để cập nhật lần đầu
+updateCountdown();
+
+</script>

@@ -1,35 +1,41 @@
 ﻿@model IEnumerable<ASP.NET.Models.CartModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 <script type="text/javascript">
     $(function () {
         $("#removecart").click(function () {
             var model = {};
-            //lấy id sản phẩm
+            // Lấy id sản phẩm
             model.Id = $("#productid").val();
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Remove", "Cart")',
-                data:  JSON.stringify(model) ,
+                data:  JSON.stringify(model),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function () {
-                    $('#CartCount').text(@Session["count"] - 1);
+                success: function (response) {
+                    // Cập nhật số lượng sản phẩm trong giỏ hàng
+                    $('#CartCount').text(response.cartItemCount);
+
+                    // Cập nhật tổng giá trị giỏ hàng
+                    $('#cartTotalPrice').text(response.cartTotalPrice + ' đ');
+
+                    // Xóa sản phẩm khỏi giỏ hàng (giao diện)
                     $("#product-" + model.Id).remove();
                 },
                 error: function () {
-                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                    alert("Lỗi trong khi xóa sản phẩm khỏi giỏ hàng!");
                 }
             });
             return false;
         });
     });
 </script>
+
 
 <section class="section-content padding-y">
     <div class="container">
@@ -42,8 +48,8 @@
                             <tr class="small text-uppercase">
                                 <th scope="col">Sản phẩm</th>
                                 <th scope="col" width="120">Số lượng</th>
-                                <th scope="col" width="120">Gía</th>
-                                <th scope="col" class="text-right" width="200"></th>
+                                <th scope="col" width="120">Giá</th>
+                                <th scope="col" class="text-right" width="200"> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,16 +67,20 @@
                                             </figure>
                                         </td>
                                         <td>
-                                            <input type="text" value="@item.Quantity" />
+                                            <div class="input-group mb-3 input-spinner custom-border">
+
+                                                <input type="text" id="ipQuantity" class="form-control text-center" value="@item.Quantity">
+
+                                            </div>
                                         </td>
                                         <td>
                                             <div class="price-wrap">
-                                                <var class="price">@item.Product.Price</var>
+                                                <var class="price">@((item.Product.Price ?? 0).ToString("N0"))đ</var>
                                             </div> <!-- price-wrap .// -->
                                         </td>
                                         <td class="text-right">
                                             <input type="hidden" value="@item.Product.Id" id="productid" />
-                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
+                                            <a data-original-title="Lưu vào danh sách yêu thích" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
 
                                             <a href="" class="btn btn-light" id="removecart"> Xóa</a>
                                         </td>
@@ -86,12 +96,12 @@
 
                     <div class="card-body border-top">
                         <a href="@Url.Action("Index", "Payment")" class="btn btn-primary float-md-right"> Thanh toán <i class="fa fa-chevron-right"></i> </a>
-                        <a href="@Url.Action("Index", "Home")" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục mua sắm </a>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục mua hàng </a>
                     </div>
                 </div> <!-- card.// -->
 
                 <div class="alert alert-success mt-3">
-                    <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+                    <p class="icontext"><i class="icon text-success fa fa-truck"></i> Miễn phí giao hàng trong 1-2 tuần</p>
                 </div>
 
             </main> <!-- col.// -->
@@ -100,9 +110,9 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label>Have coupon?</label>
+                                <label>Có mã giảm giá không?</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="" placeholder="Coupon code">
+                                    <input type="text" class="form-control" name="" placeholder="Mã giảm giá">
                                     <span class="input-group-append">
                                         <button class="btn btn-primary">Áp dụng</button>
                                     </span>
@@ -114,26 +124,50 @@
                 <div class="card">
                     <div class="card-body">
                         <dl class="dlist-align">
-                            <dt>Thành tiền:</dt>
-                            <dd class="text-right">1.000.000</dd>
+                            <dt>Giảm giá:</dt>
+                            <dd class="text-right">0 đ</dd>
                         </dl>
                         <dl class="dlist-align">
-                            <dt>Mã giảm giá:</dt>
-                            <dd class="text-right">20%</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Tổng:</dt>
-                            <dd class="text-right  h5"><strong>800.000</strong></dd>
+                            <dt>Tổng cộng:</dt>
+                            <dd class="text-right">
+                                <span id="cartTotalPrice" style="color: #FF4500;">
+                                    @if (Model != null)
+                                    {
+                                        decimal total = 0;
+                                        foreach (var item in Model)
+                                        {
+                                            total += (decimal)(item.Product.Price ?? 0) * item.Quantity;
+                                        }
+                                        @($"{total:N0} đ")
+                                    }
+                                    else
+                                    {
+                                        @("0 đ")
+                                    }
+                                </span>
+                            </dd>
                         </dl>
                         <hr>
                         <p class="text-center mb-3">
-                            <img src="images/misc/payments.png" height="26">
+                            <img src="~/Content/images/misc/payments.png" height="26">
                         </p>
+                    </div>
 
-                    </div> <!-- card-body.// -->
                 </div>  <!-- card .// -->
             </aside> <!-- col.// -->
         </div>
 
     </div> <!-- container .//  -->
 </section>
+<style>
+    /* Đặt màu sắc cho nút */
+    .btn-outline-secondary {
+        border-color: orange;
+        color: orange;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: orange;
+            color: white;
+        }
+</style>

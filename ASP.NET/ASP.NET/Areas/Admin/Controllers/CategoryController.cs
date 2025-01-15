@@ -9,8 +9,11 @@ using System.Web.UI;
 using PagedList;
 using System.IO;
 using System.Data.Entity;
+using ASP.NET.Areas.Admin.Filter;
+
 namespace ASP.NET.Areas.Admin.Controllers
 {
+    [AdminAuthorize] // Gắn bộ lọc vào toàn bộ controller
     public class CategoryController : Controller
     {
         // GET: Admin/Category

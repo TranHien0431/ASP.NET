@@ -5,15 +5,15 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Xóa</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có muốn xóa thương hiệu này không ?</h3>
 <div>
-    <h4>Brand</h4>
+    <h4>Thương hiệu</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên thương hiệu
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Hình ảnh
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Slug)
+            Mô tả
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            Hiển thị trên trang chủ
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
+           Thứ tự hiển thị
         </dt>
 
         <dd>
@@ -53,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -61,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOnUtc)
+            Cập nhật ngày
         </dt>
 
         <dd>
@@ -69,7 +69,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
+            Xóa
         </dt>
 
         <dd>
@@ -83,8 +83,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
         </div>
     }
 </div>

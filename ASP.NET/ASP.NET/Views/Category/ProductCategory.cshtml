@@ -14,8 +14,9 @@
             <div class="card-body">
                 <ol class="breadcrumb float-left">
                     <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Chi tiết</li>
+                    <li class="breadcrumb-item">
+                        <a href="#">@ViewBag.CategoryName</a>
+                    </li>
                 </ol>
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
@@ -27,18 +28,17 @@
 
                 <article class="filter-group">
                     <h6 class="title">
-                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1"> Loại Sản phẩm </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1"> Loại danh mục </a>
                     </h6>
-                    <div class="filter-content collapse show" id="collapse_1">
+                    <div class="filter-content collapse show" id="collapse_1" style="">
                         <div class="inner">
                             <ul class="list-menu">
-                                <li><a href="#">Quần </a></li>
-                                <li><a href="#">Quần dài </a></li>
-                                <li><a href="#">Áo Sweaters  </a></li>
-                                <li><a href="#">Quần áo </a></li>
-                                <li><a href="#">Áo thun </a></li>
-                                <li><a href="#">Áo khoác</a></li>
-                                <li><a href="#">Một số thứ khác </a></li>
+                                @foreach (var category in Model.ListCategory)
+                                {
+                                    <li>
+                                        <a href="#"> @Html.ActionLink(category.Name, "ProductCategory", "Category", new { @Id = category.Id }, null)</a>
+                                    </li>
+                                }
                             </ul>
                         </div> <!-- inner.// -->
                     </div>
@@ -49,34 +49,46 @@
                     </h6>
                     <div class="filter-content collapse show" id="collapse_2">
                         <div class="inner">
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Nike
-                                    <b class="badge badge-pill badge-light float-right">120</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Uniqlo
-                                    <b class="badge badge-pill badge-light float-right">15</b>
-                                </div>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Tommy Hilfiger
-                                    <b class="badge badge-pill badge-light float-right">35</b>
-                                </div>
-                            </label>                          
+                            <form method="get" action="@Url.Action("ProductCategory", "Category")">
+                                @foreach (var brand in Model.ListBrand)
+                                {
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="BrandIds" value="@brand.Id" class="custom-control-input">
+                                        <div class="custom-control-label">
+                                            @brand.Name
+                                            <b class="badge badge-pill badge-light float-right">@brand.Products.Count()</b>
+                                        </div>
+                                    </label>
+                                }
+                                <button type="submit" class="btn btn-primary mt-3">Lọc</button>
+                            </form>
                         </div> <!-- inner.// -->
                     </div>
                 </article> <!-- filter-group .// -->
-               
 
-
-                <!-- filter-group .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Khoảng giá </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_3">
+                        <div class="inner">
+                            <form method="get" action="@Url.Action("ProductCategory", "Category")">
+                                <input type="hidden" name="id" value="@Model.CategoryID" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Thấp nhất</label>
+                                        <input class="form-control" name="minPrice" type="number" value="@Request.QueryString["minPrice"]" min="0">
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Cao nhất</label>
+                                        <input class="form-control" name="maxPrice" type="number" value="@Request.QueryString["maxPrice"]" max="200000000">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button class="btn btn-block btn-primary">Áp dụng</button>
+                            </form>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
 
             </aside> <!-- col.// -->
             <main class="col-md-10">
@@ -84,7 +96,17 @@
 
                 <header class="mb-3">
                     <div class="form-inline">
-                        <strong class="mr-md-auto">Tìm thầy 30 sản phẩm</strong>
+                        <strong class="mr-md-auto">
+                            Tìm thấy
+                            @if (Model.Products != null && Model.Products.Any())
+                            {
+                                @($"{Model.Products.Count()} sản phẩm")
+                            }
+                            else
+                            {
+                                @("(0 sản phẩm)")
+                            }
+                        </strong>
                         <select class="mr-2 form-control">
                             <option>Sản phẩm mới nhất</option>
                             <option>Xu hướng</option>
@@ -92,68 +114,58 @@
                             <option>Rẻ nhất</option>
                         </select>
                         <div class="btn-group">
-                            <a href="page-listing-grid.html" class="btn btn-light" data-toggle="tooltip" title="List view">
+                            <a href="page-listing-grid.html" class="btn btn-light" data-toggle="tooltip" title="Chế độ danh sách">
                                 <i class="fa fa-bars"></i>
                             </a>
-                            <a href="page-listing-large.html" class="btn btn-light active" data-toggle="tooltip" title="Grid view">
+                            <a href="page-listing-large.html" class="btn btn-light active" data-toggle="tooltip" title="Chế độ lưới">
                                 <i class="fa fa-th"></i>
                             </a>
                         </div>
                     </div>
                 </header><!-- sect-heading -->
-
-                @foreach (var item in Model.Products)
-                {
-                    <article class="card card-product-list mb-4 shadow-sm">
-                        <div class="row no-gutters">
-                            <aside class="col-md-4">
-                                <a href="@Url.Action("ProductDetail", "Product", new { id = item.Id })" class="img-wrap d-block">
-                                    <span class="badge badge-danger">MỚI</span>
-                                    <img src="~/Content/images/items/@item.Avatar" alt="@item.Name" class="img-fluid rounded">
-                                </a>
-                            </aside> <!-- col.// -->
-                            <div class="col-md-8">
-                                <div class="info-main p-3">
-                                    <a href="@Url.Action("ProductDetail", "Product", new { id = item.Id })" class="h5 title text-dark">
-                                        @item.Name
+                <form method="get" action="@Url.Action("ProductCategory", "Category")">
+                    @foreach (var item in Model.Products)
+                    {
+                        <article class="card card-product-list">
+                            <div class="row no-gutters">
+                                <aside class="col-md-3">
+                                    <a href="@Url.Action("ProductDetail", "Product", new { id = item.Id })" class="img-wrap">
+                                        <span class="badge badge-danger"> MỚI </span>
+                                        <img src="~/Content/images/items/@item.Avatar" alt="@item.Name">
                                     </a>
-                                    <div class="price-wrap mt-2">
-                                        <!-- Giá chuyển thành màu đen -->
-                                        <span class="h4 price text-dark">@string.Format("{0:N0} ₫", item.Price)</span>
-                                    </div>
-                                    <div class="rating-wrap mb-2">
-                                        <ul class="rating-stars">
-                                            <li style="width:100%" class="stars-active text-warning">
-                                                <!-- Ngôi sao màu vàng -->
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                            <li class="text-muted">
-                                                <!-- Ngôi sao không được đánh giá -->
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="label-rating">4.5/10</div>
-                                    </div> <!-- rating-wrap.// -->
+                                </aside> <!-- col.// -->
+                                <div class="col-md-6">
+                                    <div class="info-main">
+                                        <a href="@Url.Action("ProductDetail", "Product", new { id = item.Id })" class="h5 title">
+                                            @item.Name
+                                        </a>
+                                        <div class="rating-wrap mb-2">
+                                            <ul class="rating-stars">
+                                                <li style="width:100%" class="stars-active">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            </ul>
+                                        </div> <!-- rating-wrap.// -->
 
-                                    <p class="text-muted" style="font-size: 0.9rem;">
-                                        @item.FullDescription
-                                    </p>
+                                        @using System.Globalization
 
-                                    <div class="d-flex justify-content-end">
-                                        <a href="@Url.Action("ProductDetail", "Product", new { id = item.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
-                                    </div>
-                                </div> <!-- info-main.// -->
-                            </div> <!-- col.// -->
-                        </div> <!-- row.// -->
-                    </article> <!-- card-product .// -->
-                }
+                                        <p class="mb-3">
+                                            <span class="tag"> <i class="fa fa-check"></i> Giá: @(item.Price.HasValue ? item.Price.Value.ToString("#,0") : "Chưa có giá") VNĐ</span>
+                                        </p>
 
-
-
+                                        <p>
+                                            @item.FullDescription
+                                        </p>
+                                    </div> <!-- info-main.// -->
+                                </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                        </article> <!-- card-product .// -->
+                    }
+                </form>
                 <!-- Phân trang -->
                 <div class="pagination-container">
                     <nav class="mb-4" aria-label="Điều hướng trang mẫu">
@@ -231,7 +243,7 @@
                 </style>
 
                 <div class="box text-center">
-                    <p>Bạn đã tìm thấy những gì bạn đang tìm kiếm？</p>
+                    <p>Bạn có tìm thấy những gì mình cần không?</p>
                     <a href="" class="btn btn-light">Có</a>
                     <a href="" class="btn btn-light">Không</a>
                 </div>
@@ -248,24 +260,45 @@
 <section class="padding-y-lg bg-light border-top">
     <div class="container">
 
-        <p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
+        <p class="pb-2 text-center">Cung cấp xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp đến hộp thư của bạn</p>
 
         <div class="row justify-content-md-center">
             <div class="col-lg-4 col-sm-6">
                 <form class="form-row">
                     <div class="col-8">
-                        <input class="form-control" placeholder="Your Email" type="email">
+                        <input class="form-control" placeholder="Email của bạn" type="email">
                     </div> <!-- col.// -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng ký </button>
                     </div> <!-- col.// -->
                 </form>
-                <small class="form-text">We’ll never share your email address with a third-party. </small>
+                <small class="form-text">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba. </small>
             </div> <!-- col-md-6.// -->
         </div>
 
-
     </div>
 </section>
-<!-- ======
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+<script>
+    // Cập nhật giá trị minPrice và maxPrice khi thay đổi range
+    document.getElementById("priceRange").addEventListener("input", function() {
+        document.getElementById("minPrice").value = this.value;
+        document.getElementById("maxPrice").value = this.value;
+    });
+
+    // Xử lý sự kiện khi bấm nút Áp dụng
+    document.getElementById("applyPriceFilter").addEventListener("click", function(e) {
+        e.preventDefault();
+
+        // Lấy giá trị minPrice và maxPrice
+        var minPrice = document.getElementById("minPrice").value;
+        var maxPrice = document.getElementById("maxPrice").value;
+
+        // Tạo URL với query parameters
+        var url = "@Url.Action("Search", "Category")?keyword=" + encodeURIComponent('@Request.QueryString["keyword"]') + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice;
+
+        // Redirect đến URL đã tạo để thực hiện lọc
+        window.location.href = url;
+    });
+</script>
 

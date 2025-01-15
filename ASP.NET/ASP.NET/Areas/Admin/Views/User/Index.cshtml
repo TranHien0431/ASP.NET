@@ -10,7 +10,7 @@
 <h2>Quản lý thành viên</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm thành viên", "Create")
 </p>
 <p>
     @using (Html.BeginForm("Index", "User", FormMethod.Get))
@@ -26,16 +26,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].FirstName)
+            Tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].LastName)
+            Họ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Password)
+            Mật khẩu
         </th>
         <th></th>
     </tr>
@@ -56,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -142,6 +142,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Filter\AdminAuthorizeAttribute.cs" />
     <Compile Include="Context\Brand.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -2251,6 +2252,8 @@
     <Content Include="Content\images\items\7b.jpg" />
     <Content Include="Content\images\items\7c.jpg" />
     <Content Include="Content\images\items\7d.jpg" />
+    <Content Include="Content\images\items\9.jpg" />
+    <Content Include="Content\images\items\9a.jpg" />
     <Content Include="Content\images\logo-white.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo.svg" />

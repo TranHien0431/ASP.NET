@@ -7,9 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using ASP.NET.Areas.Admin.Filter;
 
 namespace ASP.NET.Areas.Admin.Controllers
 {
+    [AdminAuthorize] // Gắn bộ lọc vào toàn bộ controller
     public class ProductController : Controller
     {
         WebsiteASP_NETEntities2 objWebsiteASP_NETEntities = new WebsiteASP_NETEntities2();

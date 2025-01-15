@@ -1,31 +1,30 @@
 ﻿@{
-    ViewBag.Title = "Setting";
+    ViewBag.Title = "Cài đặt";
 }
 
 <b class="screen-overlay"></b>
 
-
-<!-- ========================= SECTION PAGETOP ========================= -->
+<!-- ========================= PHẦN ĐẦU TRANG ========================= -->
 <section class="section-pagetop bg-gray">
     <div class="container">
-        <h2 class="title-page">My account</h2>
-    </div> <!-- container //  -->
+        <h2 class="title-page">Tài khoản của tôi</h2>
+    </div> <!-- container // -->
 </section>
-<!-- ========================= SECTION PAGETOP END// ========================= -->
-<!-- ========================= SECTION CONTENT ========================= -->
+<!-- ========================= KẾT THÚC PHẦN ĐẦU TRANG ========================= -->
+<!-- ========================= PHẦN NỘI DUNG ========================= -->
 <section class="section-content padding-y">
     <div class="container">
 
         <div class="row">
             <aside class="col-md-3">
                 <nav class="list-group">
-                    <a class="list-group-item" href="page-profile-main.html"> Account overview  </a>
-                    <a class="list-group-item" href="page-profile-address.html"> My Address </a>
-                    <a class="list-group-item" href="page-profile-orders.html"> My Orders </a>
-                    <a class="list-group-item" href="page-profile-wishlist.html"> My wishlist </a>
-                    <a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a>
-                    <a class="list-group-item active" href="page-profile-setting.html"> Settings </a>
-                    <a class="list-group-item" href="page-index-1.html"> Log out </a>
+                    <a class="list-group-item active" href="page-profile-main.html"> Tổng quan tài khoản </a>
+                    <a class="list-group-item" href="@Url.Action("Address", "Profile")"> Địa chỉ của tôi </a>
+                    <a class="list-group-item" href="@Url.Action("Orders", "Profile")"> Đơn hàng của tôi </a>
+                    <a class="list-group-item" href="@Url.Action("Wishlist", "Profile")"> Danh sách yêu thích </a>
+                    <a class="list-group-item" href="@Url.Action("Seller", "Profile")"> Mặt hàng đang bán </a>
+                    <a class="list-group-item" href="@Url.Action("Setting", "Profile")"> Cài đặt </a>
+                    <a class="list-group-item" href="page-index-1.html"> Đăng xuất </a>
                 </nav>
             </aside> <!-- col.// -->
             <main class="col-md-9">
@@ -36,7 +35,7 @@
                             <div class="col-md-9">
                                 <div class="form-row">
                                     <div class="col form-group">
-                                        <label>Name</label>
+                                        <label>Tên</label>
                                         <input type="text" class="form-control" value="Vosidiy">
                                     </div> <!-- form-group end.// -->
                                     <div class="col form-group">
@@ -47,35 +46,35 @@
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Country</label>
+                                        <label>Quốc gia</label>
                                         <select id="inputState" class="form-control">
-                                            <option> Choose...</option>
+                                            <option> Chọn...</option>
                                             <option>Uzbekistan</option>
                                             <option>Russia</option>
-                                            <option selected="">United States</option>
-                                            <option>India</option>
-                                            <option>Afganistan</option>
+                                            <option selected="">Hoa Kỳ</option>
+                                            <option>Ấn Độ</option>
+                                            <option>Afghanistan</option>
                                         </select>
                                     </div> <!-- form-group end.// -->
                                     <div class="form-group col-md-6">
-                                        <label>City</label>
+                                        <label>Thành phố</label>
                                         <input type="text" class="form-control">
                                     </div> <!-- form-group end.// -->
                                 </div> <!-- form-row.// -->
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Zip</label>
+                                        <label>Mã bưu điện</label>
                                         <input type="text" class="form-control" value="123009">
                                     </div> <!-- form-group end.// -->
                                     <div class="form-group col-md-6">
-                                        <label>Phone</label>
+                                        <label>Số điện thoại</label>
                                         <input type="text" class="form-control" value="+123456789">
                                     </div> <!-- form-group end.// -->
                                 </div> <!-- form-row.// -->
 
-                                <button class="btn btn-primary">Save</button>
-                                <button class="btn btn-light">Change password</button>
+                                <button class="btn btn-primary">Lưu</button>
+                                <button class="btn btn-light">Đổi mật khẩu</button>
 
                                 <br><br><br><br><br><br>
 
@@ -86,14 +85,10 @@
                         </form>
                     </div> <!-- card-body.// -->
                 </div> <!-- card .// -->
-
-
-
             </main> <!-- col.// -->
         </div>
-
-    </div> <!-- container .//  -->
+    </div> <!-- container .// -->
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= FOOTER ========================= -->
-<!-- ========================= FOOTER END // ========================= -->
+<!-- ========================= KẾT THÚC PHẦN NỘI DUNG ========================= -->
+<!-- ========================= CHÂN TRANG ========================= -->
+<!-- ========================= KẾT THÚC CHÂN TRANG ========================= -->

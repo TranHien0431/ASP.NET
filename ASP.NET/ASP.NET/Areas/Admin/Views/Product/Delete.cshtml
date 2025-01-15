@@ -9,11 +9,11 @@
 
 <h3>Bạn có chắc là xóa sản phẩm này không ?</h3>
 <div>
-    <h4>Product</h4>
+    <h4>Sản phẩm</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên sản phẩm
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Hình ảnh
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShortDes)
+            Mô tả ngắn
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FullDescription)
+            Mô tả đầy đủ
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            Giá
         </dt>
 
         <dd>
@@ -53,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PriceDiscount)
+            Giá đặc biệt
         </dt>
 
         <dd>
@@ -61,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TypeId)
+            ID Loại
         </dt>
 
         <dd>
@@ -69,7 +69,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Slug)
+            Mô tả
         </dt>
 
         <dd>
@@ -77,7 +77,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
+            Xóa
         </dt>
 
         <dd>
@@ -85,7 +85,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            Hiển thị trên trang chủ
         </dt>
 
         <dd>
@@ -93,7 +93,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
+            Thứ tự hiển thị
         </dt>
 
         <dd>
@@ -101,7 +101,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -109,7 +109,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOnUtc)
+            Cập nhật ngày
         </dt>
 
         <dd>
@@ -117,7 +117,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Brand.Name)
+            Tên thương hiệu
         </dt>
 
         <dd>
@@ -125,7 +125,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            Tên danh mục
         </dt>
 
         <dd>
@@ -139,8 +139,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về danh sách", "Index")
         </div>
     }
 </div>

@@ -75,22 +75,34 @@ namespace ASP.NET.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
+                // Mã hóa mật khẩu
                 var f_password = GetMD5(password);
-                var data = objWebsiteASP_NETEntities2.Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
-                if (data.Count() > 0)
+                // Kiểm tra thông tin đăng nhập
+                var user = objWebsiteASP_NETEntities2.Users
+                            .FirstOrDefault(u => u.Email == email && u.Password == f_password);
+
+                if (user != null)
                 {
-                    //add session
-                    Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
-                    Session["Email"] = data.FirstOrDefault().Email;
-                    Session["idUser"] = data.FirstOrDefault().Id;
-                    return RedirectToAction("Index");
+                    // Thêm thông tin vào Session
+                    Session["FullName"] = user.FirstName + " " + user.LastName;
+                    Session["Email"] = user.Email;
+                    Session["idUser"] = user.Id;
+
+                    // Kiểm tra quyền Admin
+                    if (user.IsAdmin == true)
+                    {
+                        Session["IsAdmin"] = true;
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        Session["IsAdmin"] = false;
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
                     ViewBag.error = "Login failed";
-                    return RedirectToAction("Login");
                 }
             }
             return View();

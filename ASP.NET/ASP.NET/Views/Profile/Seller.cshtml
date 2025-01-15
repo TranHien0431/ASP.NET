@@ -1,31 +1,30 @@
 ﻿@{
-    ViewBag.Title = "Seller";
+    ViewBag.Title = "Người bán";
 }
 
 <b class="screen-overlay"></b>
 
-
-<!-- ========================= SECTION PAGETOP ========================= -->
+<!-- ========================= PHẦN ĐẦU TRANG ========================= -->
 <section class="section-pagetop bg-gray">
     <div class="container">
-        <h2 class="title-page">My account</h2>
-    </div> <!-- container //  -->
+        <h2 class="title-page">Tài khoản của tôi</h2>
+    </div> <!-- container // -->
 </section>
-<!-- ========================= SECTION PAGETOP END// ========================= -->
-<!-- ========================= SECTION CONTENT ========================= -->
+<!-- ========================= KẾT THÚC PHẦN ĐẦU TRANG ========================= -->
+<!-- ========================= PHẦN NỘI DUNG ========================= -->
 <section class="section-content padding-y">
     <div class="container">
 
         <div class="row">
             <aside class="col-md-3">
                 <nav class="list-group">
-                    <a class="list-group-item" href="page-profile-main.html"> Account overview  </a>
-                    <a class="list-group-item" href="page-profile-address.html"> My Address </a>
-                    <a class="list-group-item" href="page-profile-orders.html"> My Orders </a>
-                    <a class="list-group-item" href="page-profile-wishlist.html"> My wishlist </a>
-                    <a class="list-group-item active" href="page-profile-seller.html"> My Selling Items </a>
-                    <a class="list-group-item" href="page-profile-setting.html"> Settings </a>
-                    <a class="list-group-item" href="page-index-1.html"> Log out </a>
+                    <a class="list-group-item active" href="page-profile-main.html"> Tổng quan tài khoản </a>
+                    <a class="list-group-item" href="@Url.Action("Address", "Profile")"> Địa chỉ của tôi </a>
+                    <a class="list-group-item" href="@Url.Action("Orders", "Profile")"> Đơn hàng của tôi </a>
+                    <a class="list-group-item" href="@Url.Action("Wishlist", "Profile")"> Danh sách yêu thích </a>
+                    <a class="list-group-item" href="@Url.Action("Seller", "Profile")"> Mặt hàng đang bán </a>
+                    <a class="list-group-item" href="@Url.Action("Setting", "Profile")"> Cài đặt </a>
+                    <a class="list-group-item" href="page-index-1.html"> Đăng xuất </a>
                 </nav>
             </aside> <!-- col.// -->
             <main class="col-md-9">
@@ -40,16 +39,16 @@
                                         <img src="~/Content/images/items/1.jpg">
                                     </div> <!-- img-wrap.// -->
                                     <figcaption class="info-wrap">
-                                        <a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>
+                                        <a href="#" class="title mb-2">Áo thun unisex thiết kế mới bán chạy</a>
                                         <div class="price-wrap mb-3">
                                             <span class="price">$32.00-$40.00</span>
-                                            <small class="text-muted">/per item</small>
+                                            <small class="text-muted">/mỗi sản phẩm</small>
                                         </div> <!-- price-wrap.// -->
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Chỉnh sửa </a>
+                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> Xem </a>
 
                                         <hr>
-                                        <a href="#" class="btn btn-success btn-block">  Promote </a>
+                                        <a href="#" class="btn btn-success btn-block"> Quảng bá </a>
                                     </figcaption>
                                 </figure>
                             </div> <!-- col.// -->
@@ -60,91 +59,10 @@
                                         <img src="~/Content/images/items/2.jpg">
                                     </div> <!-- img-wrap.// -->
                                     <figcaption class="info-wrap">
-                                        <a href="#" class="title mb-2">High Quality Winter PU Rain Jacket with Padding for Men's outdoor</a>
+                                        <a href="#" class="title mb-2">Áo mưa mùa đông chất lượng cao có lót cho nam</a>
                                         <div class="price-wrap mb-3">
                                             <span class="price">$41.00-$50.00</span>
-                                            <small class="text-muted">/per item</small>
+                                            <small class="text-muted">/mỗi sản phẩm</small>
                                         </div> <!-- price-wrap.// -->
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
-
-                                        <hr>
-                                        <a href="#" class="btn btn-success btn-block">  Promote </a>
-                                    </figcaption>
-                                </figure>
-                            </div> <!-- col.// -->
-
-                            <div class="col-md-4">
-                                <figure class="card card-product-grid">
-                                    <div class="img-wrap">
-                                        <img src="~/Content/images/items/1.jpg">
-                                    </div> <!-- img-wrap.// -->
-                                    <figcaption class="info-wrap">
-                                        <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-                                        <div class="price-wrap mb-3">
-                                            <span class="price">$32.00-$40.00</span>
-                                            <small class="text-muted">/per item</small>
-                                        </div> <!-- price-wrap.// -->
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
-
-                                        <hr>
-                                        <a href="#" class="btn btn-success btn-block">  Promote </a>
-                                    </figcaption>
-                                </figure>
-                            </div> <!-- col.// -->
-
-                            <div class="col-md-4">
-                                <figure class="card card-product-grid">
-                                    <div class="img-wrap">
-                                        <img src="~/Content/images/items/4.jpg">
-                                    </div> <!-- img-wrap.// -->
-                                    <figcaption class="info-wrap">
-                                        <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-                                        <div class="price-wrap mb-3">
-                                            <span class="price">$32.00-$40.00</span>
-                                            <small class="text-muted">/per item</small>
-                                        </div> <!-- price-wrap.// -->
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
-
-                                        <hr>
-                                        <a href="#" class="btn btn-success btn-block">  Promote </a>
-                                    </figcaption>
-                                </figure>
-                            </div> <!-- col.// -->
-
-                            <div class="col-md-4">
-                                <figure class="card card-product-grid">
-                                    <div class="img-wrap">
-                                        <img src="~/Content/images/items/5.jpg">
-                                    </div> <!-- img-wrap.// -->
-                                    <figcaption class="info-wrap">
-                                        <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-                                        <div class="price-wrap mb-3">
-                                            <span class="price">$32.00-$40.00</span>
-                                            <small class="text-muted">/per item</small>
-                                        </div> <!-- price-wrap.// -->
-                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-                                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
-
-                                        <hr>
-                                        <a href="#" class="btn btn-success btn-block">  Promote </a>
-                                    </figcaption>
-                                </figure>
-                            </div> <!-- col.// -->
-
-                        </div> <!-- row .//  -->
-
-                    </div> <!-- card-body.// -->
-                </article>
-
-
-            </main> <!-- col.// -->
-        </div>
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= FOOTER ========================= -->
-<!-- ========================= FOOTER END // ========================= -->
+                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Chỉnh sửa </a>
+                                        <a href="#" class="btn b

@@ -10,7 +10,7 @@
 <h2>Quản lý thương hiệu</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm thương hiệu", "Create")
 </p>
 <p>
     @using (Html.BeginForm("Index", "Brand", FormMethod.Get))
@@ -26,16 +26,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].Name)
+            Tên thương hiệu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Avatar)
+            Hình ảnh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].Slug)
+            Mô tả
         </th>
         <th>
-            @Html.DisplayNameFor(model => model[0].DisplayOrder)
+           Thứ tự hiển thị
         </th>
         <th></th>
     </tr>
@@ -63,9 +63,9 @@
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

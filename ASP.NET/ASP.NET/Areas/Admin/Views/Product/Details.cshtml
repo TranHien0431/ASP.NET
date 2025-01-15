@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên sản phẩm
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Hình ảnh
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShortDes)
+            Mô tả ngắn
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FullDescription)
+            Mô tả đầy đủ
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            Giá
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PriceDiscount)
+            Giá đặc biệt
         </dt>
 
         <dd>
@@ -60,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TypeId)
+            ID Loại
         </dt>
 
         <dd>
@@ -68,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Slug)
+            Mô tả
         </dt>
 
         <dd>
@@ -76,7 +76,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
+            Xóa
         </dt>
 
         <dd>
@@ -84,7 +84,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            Hiển thị trên trang chủ
         </dt>
 
         <dd>
@@ -92,7 +92,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
+            Thứ tự hiển thị
         </dt>
 
         <dd>
@@ -100,7 +100,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -108,7 +108,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOnUtc)
+            Cập nhật ngày
         </dt>
 
         <dd>
@@ -116,7 +116,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Brand.Name)
+            Tên thương hiệu
         </dt>
 
         <dd>
@@ -124,7 +124,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            Tên danh mục
         </dt>
 
         <dd>
@@ -134,6 +134,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Trở về danh sách", "Index")
 </p>

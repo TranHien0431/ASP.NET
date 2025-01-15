@@ -60,11 +60,21 @@ namespace ASP.NET.Controllers
         //xóa sản phẩm khỏi giỏ hàng theo id
         public ActionResult Remove(int Id)
         {
-            List<CartModel> li = (List<CartModel>)Session["cart"];
-            li.RemoveAll(x => x.Product.Id == Id);
-            Session["cart"] = li;
-            Session["count"] = Convert.ToInt32(Session["count"]) - 1;
-            return Json(new { Message = "Thành công", JsonRequestBehavior.AllowGet });
+            List<CartModel> cart = (List<CartModel>)Session["cart"];
+            cart.RemoveAll(x => x.Product.Id == Id);  // Xóa sản phẩm khỏi giỏ hàng
+            Session["cart"] = cart;
+            Session["count"] = cart.Count;
+
+            // Tính lại tổng giá trị
+            decimal cartTotalPrice = cart.Sum(x => (decimal)((x.Product.Price ?? 0.0) * x.Quantity));  // Chuyển kiểu double? thành double rồi tính tổng
+
+            // Trả về số lượng sản phẩm và tổng giá trị giỏ hàng mới
+            return Json(new
+            {
+                success = true,
+                cartTotalPrice = cartTotalPrice.ToString("N0"),
+                cartItemCount = cart.Count
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 

@@ -11,51 +11,81 @@ namespace ASP.NET.Controllers
 {
     public class CategoryController : Controller
     {
+        WebsiteASP_NETEntities2 objWebsiteASP_NETEntities = new WebsiteASP_NETEntities2();
+
         // GET: Category
-        WebsiteASP_NETEntities2 objWebsiteASP_NETEntities2 = new WebsiteASP_NETEntities2();
         public ActionResult Index()
         {
-           
-            return View();
-        }
-        public ActionResult AllCategory()
-
-        {  var lstCategory = objWebsiteASP_NETEntities2.Categories.ToList();
-        
+            var lstCategory = objWebsiteASP_NETEntities.Categories.ToList();
             return View(lstCategory);
         }
-        public ActionResult ProductCategory(int id, int page = 1)  // Thêm tham số page với giá trị mặc định là 1
+        public ActionResult AllCategory()
         {
-            int pageSize = 5;  // Số sản phẩm mỗi trang
+            var lstCategory = objWebsiteASP_NETEntities.Categories.ToList();
 
-            // Lấy sản phẩm của một danh mục với phân trang
-            var listProduct = objWebsiteASP_NETEntities2.Products
-                                .Where(n => n.CategoryId == id)
-                                .OrderBy(p => p.Id)  // Sắp xếp sản phẩm (nếu cần)
-                                .Skip((page - 1) * pageSize)  // Bỏ qua các sản phẩm trước trang hiện tại
-                                .Take(pageSize)  // Lấy sản phẩm cho trang hiện tại
-                                .ToList();
+            return View(lstCategory);
+        }
+        public ActionResult ProductCategory(int id, double? minPrice, double? maxPrice, List<int> BrandIds, int page = 1)
+        {
+            int pageSize = 6;
 
-            // Tổng số sản phẩm
-            var totalItems = objWebsiteASP_NETEntities2.Products.Count(n => n.CategoryId == id);
-            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);  // Tính tổng số trang
+            // Lấy thông tin danh mục hiện tại
+            var category = objWebsiteASP_NETEntities.Categories.FirstOrDefault(c => c.Id == id);
 
-            // Tạo ViewModel chứa thông tin phân trang
+            // Khởi tạo truy vấn sản phẩm
+            var query = objWebsiteASP_NETEntities.Products.Where(p => p.CategoryId == id);
+
+            if (minPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= minPrice.Value);
+            }
+
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= maxPrice.Value);
+            }
+
+            if (BrandIds != null && BrandIds.Any())
+            {
+                query = query.Where(p => BrandIds.Contains(p.BrandId.Value));
+            }
+
+            var totalItems = query.Count();
+
+            var listProduct = query
+                .OrderBy(p => p.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var listCategory = objWebsiteASP_NETEntities.Categories.ToList();
+            var listBrand = objWebsiteASP_NETEntities.Brands.ToList();
+
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
             var model = new ProductListViewModel
             {
                 Products = listProduct,
+                ListCategory = listCategory,
+                ListBrand = listBrand,
                 CurrentPage = page,
                 TotalPages = totalPages,
-                CategoryID = id
+                CategoryID = id,
+                BrandID = null
             };
+
+            // Truyền tên danh mục vào ViewBag
+            ViewBag.CategoryName = category?.Name ?? "Danh mục không tồn tại";  // Thêm giá trị mặc định nếu không tìm thấy
 
             return View(model);
         }
 
+
+
         // Tìm kiếm và lọc sản phẩm
-        public ActionResult Search(string keyword, decimal? minPrice, decimal? maxPrice, int page = 1)
+        public ActionResult Search(string keyword, double? minPrice, double? maxPrice, int page = 1)
         {
-            var query = objWebsiteASP_NETEntities2.Products.AsQueryable();
+            var query = objWebsiteASP_NETEntities.Products.AsQueryable();
 
             // Lọc theo từ khóa
             if (!string.IsNullOrEmpty(keyword))
@@ -66,12 +96,12 @@ namespace ASP.NET.Controllers
             // Lọc theo giá
             if (minPrice.HasValue)
             {
-                query = query.Where(p => p.Price >= (double)minPrice.Value);
+                query = query.Where(p => p.Price >= minPrice.Value);
             }
 
             if (maxPrice.HasValue)
             {
-                query = query.Where(p => p.Price <= (double)maxPrice.Value);
+                query = query.Where(p => p.Price <= maxPrice.Value);
             }
 
             // Phân trang với PagedList
@@ -80,5 +110,6 @@ namespace ASP.NET.Controllers
 
             return View(products); // Trả về PagedList trong View
         }
+
     }
 }

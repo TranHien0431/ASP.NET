@@ -20,6 +20,8 @@ namespace ASP.NET.Areas.Admin
                 new { action = "Index", id = UrlParameter.Optional },
                   namespaces: new[] { "ASP.NET.Areas.Admin.Controllers" }
             );
+            // Thêm bộ lọc cho tất cả các controller trong khu vực Admin
+            //GlobalFilters.Filters.Add(new AdminAuthorizeAttribute());
         }
 
     }

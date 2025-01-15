@@ -1,4 +1,5 @@
-﻿using ASP.NET.Context;
+﻿using ASP.NET.Areas.Admin.Filter;
+using ASP.NET.Context;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace ASP.NET.Areas.Admin.Controllers
 {
+    [AdminAuthorize] // Gắn bộ lọc vào toàn bộ controller
     public class UserController : Controller
     {
         WebsiteASP_NETEntities2 objWebsiteASP_NETEntities = new WebsiteASP_NETEntities2();
